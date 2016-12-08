@@ -6,19 +6,22 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def login_user(user)
-    user.reset_session_token!
-    session[:session_token] = user.session_token
+    client = request.env["HTTP_USER_AGENT"]
+    new_token = SessionToken.generate_token!(user, client)
+    session[:session_token] = new_token.token
     redirect_to cats_url
   end
 
-  def log_out
-    current_user.reset_session_token!
-    session[:session_token] = ""
+  def log_out(token)
+    remove_token = SessionToken.find_by_token(token)
+    remove_token.destroy
+    # session[:session_token] = ""
     redirect_to cats_url
   end
 
   def current_user
-    @current_user ||= User.find_by_session_token(session[:session_token])
+    @current_user ||=
+      SessionToken.find_user_with_token(session[:session_token])
   end
 
   private

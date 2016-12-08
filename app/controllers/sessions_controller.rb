@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
 
-    log_out
+    log_out(params[:id])
 
   end
 

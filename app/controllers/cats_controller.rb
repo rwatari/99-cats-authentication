@@ -2,7 +2,6 @@ class CatsController < ApplicationController
   before_action :verify_owner, only: [ :edit, :update ]
 
   def index
-
     @cats = Cat.all
     render :index
   end
