@@ -7,6 +7,7 @@ NinetyNineCatsDay1::Application.routes.draw do
 
   resources :users, only: [:new, :show, :create]
 
-  resources :sessions, only: [:new, :create, :destroy]
+  # sessions resource should be singular?
+  resource :session, only: [:new, :create, :destroy]
   root to: redirect("/cats")
 end

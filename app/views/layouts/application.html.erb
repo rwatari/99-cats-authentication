@@ -12,7 +12,7 @@
     <% if current_user %>
       <h3> Hi <%= current_user.username %> </h3>
       <%= link_to "User Page", user_url(current_user) %>
-      <%= button_to "Log out", session_url(session[:session_token]), method: :delete %>
+      <%= button_to "Log out", session_url, method: :delete %>
     <% else %>
       <h3> Hello guest! </h3>
       <%= link_to "Log in", new_session_url %>

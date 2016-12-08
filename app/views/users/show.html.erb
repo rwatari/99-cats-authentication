@@ -1,10 +1,7 @@
 <h1>HI <%= @user.username %>!</h1>
 <ul>
   <% @user.session_tokens.each do |token| %>
-    <li>you're logged in here: <%= token.client %> <%= token.id %>
-      <%= button_to "Log out", session_url(token.token), method: :delete %>
-
-    </li>
+    <li>you're logged in here: <%= token.client %></li>
     <% end %>
 </ul>
 

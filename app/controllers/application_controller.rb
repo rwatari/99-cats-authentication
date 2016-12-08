@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
     redirect_to cats_url
   end
 
-  def log_out(token)
-    remove_token = SessionToken.find_by_token(token)
+  def log_out
+    remove_token = SessionToken.find_by_token(session[:session_token])
     remove_token.destroy
-    # session[:session_token] = ""
+    session[:session_token] = nil
     redirect_to cats_url
   end
 

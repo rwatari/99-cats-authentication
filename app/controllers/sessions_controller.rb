@@ -18,9 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-
-    log_out(params[:id])
-
+    log_out
   end
 
   private
